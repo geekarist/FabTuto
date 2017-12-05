@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter.addAll(Arrays.asList("Item 1", "Item 2", "Item 3"));
+        for (int i = 0; i < 100; i++) {
+            adapter.add("Item " + i);
+        }
     }
 
     private class MainAdapter extends RecyclerView.Adapter<MainViewHolder> {
@@ -61,19 +63,23 @@ public class MainActivity extends AppCompatActivity {
         public void addAll(List<String> strings) {
             mItems.addAll(strings);
         }
+
+        void add(String s) {
+            mItems.add(s);
+        }
     }
 
     private class MainViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView mItemTextView;
 
-        public MainViewHolder(View itemView) {
+        MainViewHolder(View itemView) {
             super(itemView);
 
             mItemTextView = itemView.findViewById(R.id.item_tv);
         }
 
-        public void bind(String item) {
+        void bind(String item) {
             mItemTextView.setText(item);
         }
     }
