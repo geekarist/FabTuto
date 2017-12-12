@@ -73,10 +73,15 @@ public class MainActivity extends AppCompatActivity {
 
         private final TextView mItemTextView;
 
-        MainViewHolder(View itemView) {
+        MainViewHolder(final View itemView) {
             super(itemView);
 
             mItemTextView = itemView.findViewById(R.id.item_tv);
+
+            mItemTextView.setOnClickListener(
+                    v -> DetailActivity.navigate(
+                            itemView.getContext(),
+                            String.valueOf(mItemTextView.getText())));
         }
 
         void bind(String item) {
